@@ -15,7 +15,7 @@ body {
     width: 100vw;
     height: 100vh;
     height: 100dvh; /* Dynamic viewport height for mobile browsers */
-    background-color: #471f66;
+    background-color: #2c1142;
     display: flex;
     align-items: center;
     justify-content: center;
