@@ -68,6 +68,7 @@ function Home() {
   const navigate = useNavigate();
   const [variantIndex, setVariantIndex] = useState(0);
   const variantRef = useRef(variantIndex);
+  const [isDarkGreen, setIsDarkGreen] = useState(false);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -198,13 +199,17 @@ function Home() {
     setVariantIndex((prev) => (prev + 1) % variants.length);
   };
 
+  const handleBackgroundToggle = () => {
+    setIsDarkGreen((prev) => !prev);
+  };
+
   // Keep ref in sync with state for use in animation loop
   useEffect(() => {
     variantRef.current = variantIndex;
   }, [variantIndex]);
 
   return (
-    <div className="grass-container">
+    <div className="grass-container" style={{ backgroundColor: isDarkGreen ? '#002d18' : '#2c1142' }}>
       <img
         src={relvaFullLogo}
         alt="Relva"
@@ -217,6 +222,8 @@ function Home() {
         src={relvaWordmark}
         alt="Relva"
         className="logo-bottom-left"
+        onClick={handleBackgroundToggle}
+        style={{ cursor: "pointer" }}
       />
 
       <img
