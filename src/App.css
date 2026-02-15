@@ -46,7 +46,7 @@ body {
     position: absolute;
     bottom: calc(25px + env(safe-area-inset-bottom, 0px));
     left: 25px;
-    height: 210px;
+    height: 190px;
     z-index: 10;
 }
 
