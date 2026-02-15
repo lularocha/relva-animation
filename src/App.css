@@ -4,11 +4,15 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+    background-color: #63c34a;
+}
+
 html,
 body {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
 }
 
 .grass-container {
@@ -20,6 +24,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 
 /* Top center - Full logo */
@@ -59,3 +64,4 @@ body {
     display: block;
     z-index: 1;
 }
+
