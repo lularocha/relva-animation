@@ -27,6 +27,7 @@ interface VariantParams {
   spikeChance: number;
   spikeMaxStretch: number;
   spikeSpeedMultiplier: number;
+  greenDownwardStretch?: number;
 }
 
 const variantParams: Record<Variant, VariantParams> = {
@@ -56,6 +57,7 @@ const variantParams: Record<Variant, VariantParams> = {
     spikeChance: 0,
     spikeMaxStretch: 1,
     spikeSpeedMultiplier: 1,
+    greenDownwardStretch: 25,
   },
 };
 
@@ -160,7 +162,13 @@ function Home() {
         const actualStretch = minStretch + stretchFactor * (maxStretch - minStretch);
         const topY = bottomY - actualStretch * maxStretchZone;
 
-        lineEl.setAttribute("y1", String(bottomY));
+        // Calculate downward stretch for green lines in free mode
+        let actualBottomY = bottomY;
+        if (params.greenDownwardStretch && line.color === "#63C34A") {
+          actualBottomY = bottomY + stretchFactor * params.greenDownwardStretch;
+        }
+
+        lineEl.setAttribute("y1", String(actualBottomY));
         lineEl.setAttribute("y2", String(topY));
       });
 
