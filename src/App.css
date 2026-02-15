@@ -14,6 +14,7 @@ body {
 .grass-container {
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
     background-color: #151645;
     display: flex;
     align-items: center;
@@ -34,7 +35,7 @@ body {
 /* Bottom right - Wordmark */
 .logo-bottom-left {
     position: absolute;
-    bottom: 25px;
+    bottom: calc(25px + env(safe-area-inset-bottom, 0px));
     right: 25px;
     height: 36px;
     z-index: 10;
@@ -43,7 +44,7 @@ body {
 /* Bottom left - Instituto text */
 .logo-bottom-right {
     position: absolute;
-    bottom: 25px;
+    bottom: calc(25px + env(safe-area-inset-bottom, 0px));
     left: 25px;
     height: 240px;
     z-index: 10;
