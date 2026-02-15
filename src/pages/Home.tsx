@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
@@ -14,11 +14,25 @@ interface GrassLine {
   color: string;
 }
 
+const variants = ["shorter", "taller", "free"] as const;
+type Variant = (typeof variants)[number];
+
+const variantParams: Record<
+  Variant,
+  { speedMultiplier: number; minStretchMultiplier: number; maxStretchMultiplier: number; colors: string[] }
+> = {
+  shorter: { speedMultiplier: 1, minStretchMultiplier: 1/3, maxStretchMultiplier: 2/3, colors: ["#63C34A", "#ffffff"] },
+  taller: { speedMultiplier: 1, minStretchMultiplier: 0, maxStretchMultiplier: 1, colors: ["#63C34A", "#ffffff"] },
+  free: { speedMultiplier: 1, minStretchMultiplier: 0, maxStretchMultiplier: 1, colors: ["#63C34A", "#ffffff"] }, // TBD
+};
+
 function Home() {
   const svgRef = useRef<SVGSVGElement>(null);
   const linesRef = useRef<GrassLine[]>([]);
   const animationRef = useRef<number>(0);
   const navigate = useNavigate();
+  const [variantIndex, setVariantIndex] = useState(0);
+  const variantRef = useRef(variantIndex);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -78,13 +92,19 @@ function Home() {
       const bottomY = canvasHeight * (2 / 3);
       const maxStretchZone = canvasHeight / 3;
 
+      // Get current variant params
+      const currentVariant = variants[variantRef.current];
+      const params = variantParams[currentVariant];
+
       lineElements.forEach((lineEl, index) => {
         const line = linesRef.current[index];
         if (!line) return;
 
-        line.phase += line.speed * 0.015;
+        line.phase += line.speed * 0.015 * params.speedMultiplier;
         const stretchFactor = (Math.sin(line.phase) + 1) / 2;
-        const actualStretch = stretchFactor * line.maxStretch;
+        const minStretch = line.maxStretch * params.minStretchMultiplier;
+        const maxStretch = line.maxStretch * params.maxStretchMultiplier;
+        const actualStretch = minStretch + stretchFactor * (maxStretch - minStretch);
         const topY = bottomY - actualStretch * maxStretchZone;
 
         lineEl.setAttribute("y1", String(bottomY));
@@ -109,9 +129,18 @@ function Home() {
     };
   }, []);
 
-  const handleClick = () => {
+  const handleLogoClick = () => {
     navigate("/about");
   };
+
+  const handleAnimationClick = () => {
+    setVariantIndex((prev) => (prev + 1) % variants.length);
+  };
+
+  // Keep ref in sync with state for use in animation loop
+  useEffect(() => {
+    variantRef.current = variantIndex;
+  }, [variantIndex]);
 
   return (
     <div className="grass-container">
@@ -119,7 +148,7 @@ function Home() {
         src={relvaFullLogo}
         alt="Relva"
         className="logo-top-center"
-        onClick={handleClick}
+        onClick={handleLogoClick}
         style={{ cursor: "pointer" }}
       />
 
@@ -141,6 +170,8 @@ function Home() {
         width="100%"
         height="100%"
         preserveAspectRatio="none"
+        onClick={handleAnimationClick}
+        style={{ cursor: "pointer" }}
       />
     </div>
   );
