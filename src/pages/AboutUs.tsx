@@ -8,7 +8,7 @@ function AboutUs() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section
-        className="relative h-[60vh] flex items-center justify-center bg-cover bg-center"
+        className="relative h-screen flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage: "url('/images/hero.jpg')",
           backgroundColor: "#1a0a28"
@@ -28,16 +28,25 @@ function AboutUs() {
 
         {/* Hero content */}
         <div className="relative z-10 text-center text-white px-4">
-          <img
-            src={relvaFullLogo}
-            alt="Relva"
-            className="h-60 md:h-96 mx-auto"
-          />
+          <a
+            href="#highlights"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="cursor-pointer"
+          >
+            <img
+              src={relvaFullLogo}
+              alt="Relva"
+              className="h-60 md:h-96 mx-auto hover:scale-105 transition-transform"
+            />
+          </a>
         </div>
       </section>
 
       {/* Highlights Section */}
-      <section className="pt-4 pb-16 md:py-16 px-4 md:px-8 lg:px-16 bg-[#63c34a]">
+      <section id="highlights" className="pt-4 pb-16 md:py-16 px-4 md:px-8 lg:px-16 bg-[#63c34a]">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Mission */}
