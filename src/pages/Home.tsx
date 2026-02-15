@@ -12,18 +12,51 @@ interface GrassLine {
   phase: number;
   maxStretch: number;
   color: string;
+  isSpiking: boolean;
+  spikeStartPhase: number;
 }
 
 const variants = ["shorter", "taller", "free"] as const;
 type Variant = (typeof variants)[number];
 
-const variantParams: Record<
-  Variant,
-  { speedMultiplier: number; minStretchMultiplier: number; maxStretchMultiplier: number; colors: string[] }
-> = {
-  shorter: { speedMultiplier: 1, minStretchMultiplier: 1/3, maxStretchMultiplier: 2/3, colors: ["#63C34A", "#ffffff"] },
-  taller: { speedMultiplier: 1, minStretchMultiplier: 0, maxStretchMultiplier: 1, colors: ["#63C34A", "#ffffff"] },
-  free: { speedMultiplier: 1, minStretchMultiplier: 0, maxStretchMultiplier: 1, colors: ["#63C34A", "#ffffff"] }, // TBD
+interface VariantParams {
+  speedMultiplier: number;
+  minStretchMultiplier: number;
+  maxStretchMultiplier: number;
+  colors: string[];
+  spikeChance: number;
+  spikeMaxStretch: number;
+  spikeSpeedMultiplier: number;
+}
+
+const variantParams: Record<Variant, VariantParams> = {
+  shorter: {
+    speedMultiplier: 1.1,
+    minStretchMultiplier: 1/3,
+    maxStretchMultiplier: 2/3,
+    colors: ["#63C34A", "#ffffff"],
+    spikeChance: 0.0005,       // ~few spikes per second
+    spikeMaxStretch: 0.77,     // 15% taller than 0.67
+    spikeSpeedMultiplier: 1.5, // 50% faster during spike
+  },
+  taller: {
+    speedMultiplier: 1,
+    minStretchMultiplier: 0,
+    maxStretchMultiplier: 1,
+    colors: ["#63C34A", "#ffffff"],
+    spikeChance: 0,
+    spikeMaxStretch: 1,
+    spikeSpeedMultiplier: 1,
+  },
+  free: {
+    speedMultiplier: 1,
+    minStretchMultiplier: 0,
+    maxStretchMultiplier: 1,
+    colors: ["#63C34A", "#ffffff"],
+    spikeChance: 0,
+    spikeMaxStretch: 1,
+    spikeSpeedMultiplier: 1,
+  },
 };
 
 function Home() {
@@ -45,7 +78,7 @@ function Home() {
       const grassColors = ["#63C34A", "#ffffff"];
 
       for (let i = 0; i < lineCount; i++) {
-        const x = (i / lineCount) * width + Math.random() * 0;
+        const x = 1 + (i / lineCount) * width;
         const strokeWidth = 2 + Math.random() * 0;
         const speed = 0.5 + Math.random() * 1.5;
         const phase = Math.random() * Math.PI * 2;
@@ -59,6 +92,8 @@ function Home() {
           phase,
           maxStretch,
           color,
+          isSpiking: false,
+          spikeStartPhase: 0,
         });
       }
       return lines;
@@ -100,10 +135,28 @@ function Home() {
         const line = linesRef.current[index];
         if (!line) return;
 
-        line.phase += line.speed * 0.015 * params.speedMultiplier;
+        // Check if spike should start (only when line is near its lowest point)
+        const currentStretch = (Math.sin(line.phase) + 1) / 2;
+        if (!line.isSpiking && params.spikeChance > 0 && currentStretch < 0.1 && Math.random() < params.spikeChance) {
+          line.isSpiking = true;
+          line.phase = -Math.PI / 2; // Reset to bottom so surge grows upward
+          line.spikeStartPhase = line.phase;
+        }
+
+        // Use spike or normal multipliers
+        const speedMult = line.isSpiking ? params.spikeSpeedMultiplier : params.speedMultiplier;
+        const maxStretchMult = line.isSpiking ? params.spikeMaxStretch : params.maxStretchMultiplier;
+
+        line.phase += line.speed * 0.015 * speedMult;
+
+        // End spike after one full cycle (2*PI)
+        if (line.isSpiking && line.phase - line.spikeStartPhase >= Math.PI * 2) {
+          line.isSpiking = false;
+        }
+
         const stretchFactor = (Math.sin(line.phase) + 1) / 2;
         const minStretch = line.maxStretch * params.minStretchMultiplier;
-        const maxStretch = line.maxStretch * params.maxStretchMultiplier;
+        const maxStretch = line.maxStretch * maxStretchMult;
         const actualStretch = minStretch + stretchFactor * (maxStretch - minStretch);
         const topY = bottomY - actualStretch * maxStretchZone;
 
@@ -164,15 +217,17 @@ function Home() {
         className="logo-bottom-right"
       />
 
-      <svg
-        ref={svgRef}
-        className="grass-svg"
-        width="100%"
-        height="100%"
-        preserveAspectRatio="none"
-        onClick={handleAnimationClick}
-        style={{ cursor: "pointer" }}
-      />
+      <div style={{ paddingLeft: 2, marginLeft: 2, width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}>
+        <svg
+          ref={svgRef}
+          className="grass-svg"
+          width="100%"
+          height="100%"
+          preserveAspectRatio="none"
+          onClick={handleAnimationClick}
+          style={{ cursor: "pointer" }}
+        />
+      </div>
     </div>
   );
 }
