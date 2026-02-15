@@ -27,7 +27,7 @@ function AboutUs() {
         </Link>
 
         {/* Hero content */}
-        <div className="relative z-10 text-center text-white px-4">
+        <div className="relative z-10 text-center text-white px-4" style={{ marginTop: "-50px" }}>
           <a
             href="#highlights"
             onClick={(e) => {
