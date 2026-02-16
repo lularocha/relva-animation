@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Target, Eye, Leaf, ArrowLeft } from "lucide-react";
+import { Target, Eye, Leaf, ArrowLeft, ArrowDown } from "lucide-react";
 
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
 
@@ -43,6 +43,18 @@ function AboutUs() {
             />
           </a>
         </div>
+
+        {/* Scroll down arrow */}
+        <a
+          href="#highlights"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="absolute bottom-[70px] left-1/2 -translate-x-1/2 z-10 cursor-pointer hover:scale-110 transition-transform"
+        >
+          <ArrowDown className="w-10 h-10 text-[#1da348]" />
+        </a>
       </section>
 
       {/* Highlights Section */}
