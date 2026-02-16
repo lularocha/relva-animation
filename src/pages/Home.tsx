@@ -73,7 +73,7 @@ const variantParams: Record<Variant, VariantParams> = {
     spikeChance: 0,
     spikeMaxStretch: 1,
     spikeSpeedMultiplier: 1,
-    greenBaseOffset: 25,
+    greenBaseOffset: 10,
     minHeight: 50,
   },
 };
