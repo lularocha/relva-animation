@@ -28,6 +28,8 @@ interface VariantParams {
   spikeMaxStretch: number;
   spikeSpeedMultiplier: number;
   greenDownwardStretch?: number;
+  greenBaseOffset?: number;
+  minHeight?: number;
 }
 
 // ============================================
@@ -55,7 +57,7 @@ const variantParams: Record<Variant, VariantParams> = {
     spikeSpeedMultiplier: 1.5, // 50% faster during spike
   },
   taller: {
-    speedMultiplier: 1,
+    speedMultiplier: 0.37,
     minStretchMultiplier: 0,
     maxStretchMultiplier: 1,
     colors: ["#63C34A", "#ffffff"],
@@ -64,14 +66,15 @@ const variantParams: Record<Variant, VariantParams> = {
     spikeSpeedMultiplier: 1,
   },
   free: {
-    speedMultiplier: 1,
+    speedMultiplier: 0.37,
     minStretchMultiplier: 0,
     maxStretchMultiplier: 1,
     colors: ["#63C34A", "#ffffff"],
     spikeChance: 0,
     spikeMaxStretch: 1,
     spikeSpeedMultiplier: 1,
-    greenDownwardStretch: 25,
+    greenBaseOffset: 25,
+    minHeight: 50,
   },
 };
 
@@ -190,14 +193,20 @@ function Home() {
           minStretch + stretchFactor * (maxStretch - minStretch);
         const topY = bottomY - actualStretch * maxStretchZone;
 
-        // Calculate downward stretch for green lines in free mode
+        // Calculate base offset for green lines in free mode (starts below white lines)
         let actualBottomY = bottomY;
-        if (params.greenDownwardStretch && line.color === "#63C34A") {
-          actualBottomY = bottomY + stretchFactor * params.greenDownwardStretch;
+        if (params.greenBaseOffset && line.color === "#63C34A") {
+          actualBottomY = bottomY + params.greenBaseOffset;
+        }
+
+        // Enforce minimum height constraint
+        let finalTopY = topY;
+        if (params.minHeight && actualBottomY - topY < params.minHeight) {
+          finalTopY = actualBottomY - params.minHeight;
         }
 
         lineEl.setAttribute("y1", String(actualBottomY));
-        lineEl.setAttribute("y2", String(topY));
+        lineEl.setAttribute("y2", String(finalTopY));
       });
 
       animationRef.current = requestAnimationFrame(animate);
