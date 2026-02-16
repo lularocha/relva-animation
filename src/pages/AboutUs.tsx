@@ -1,19 +1,47 @@
 import { Link } from "react-router-dom";
-import { Target, Eye, Leaf, ArrowLeft, ArrowDown } from "lucide-react";
+import { Target, Eye, Leaf, ArrowLeft, ArrowDown, ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
 
 function AboutUs() {
+  const [heroAnimated, setHeroAnimated] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => setHeroAnimated(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/hero.jpg')",
-          backgroundColor: "#1a0a28"
-        }}
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+        style={{ backgroundColor: "#002d18" }}
       >
+        {/* Background image with slide-down animation */}
+        <div
+          className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out ${
+            heroAnimated
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-full"
+          }`}
+          style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
@@ -147,6 +175,17 @@ function AboutUs() {
           </p>
         </div>
       </footer>
+
+      {/* Scroll to top button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 w-10 h-10 rounded-full bg-[#1da348] hover:bg-[#0f7838] flex items-center justify-center transition-all duration-300 cursor-pointer z-50 ${
+          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-5 h-5 text-white" />
+      </button>
     </div>
   );
 }
