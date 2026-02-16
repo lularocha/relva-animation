@@ -58,7 +58,7 @@ const variantParams: Record<Variant, VariantParams> = {
   },
   taller: {
     speedMultiplier: 0.37,
-    minStretchMultiplier: 0,
+    minStretchMultiplier: 1 / 4,
     maxStretchMultiplier: 1,
     colors: ["#63C34A", "#ffffff"],
     spikeChance: 0,
@@ -67,14 +67,13 @@ const variantParams: Record<Variant, VariantParams> = {
   },
   free: {
     speedMultiplier: 0.37,
-    minStretchMultiplier: 0,
+    minStretchMultiplier: 1 / 4,
     maxStretchMultiplier: 1,
     colors: ["#63C34A", "#ffffff"],
     spikeChance: 0,
     spikeMaxStretch: 1,
     spikeSpeedMultiplier: 1,
     greenBaseOffset: 10,
-    minHeight: 50,
   },
 };
 
