@@ -20,7 +20,7 @@ function AboutUs() {
         {/* Back button */}
         <Link
           to="/"
-          className="absolute top-6 left-6 z-20 flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+          className="absolute top-4 left-4 z-20 flex items-center gap-2 text-white/70 hover:text-white transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
           <span>Voltar</span>
