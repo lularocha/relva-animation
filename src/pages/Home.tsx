@@ -30,14 +30,26 @@ interface VariantParams {
   greenDownwardStretch?: number;
 }
 
+// ============================================
+// BACKGROUND COLORS - Edit hex values here
+// ============================================
+const BACKGROUND_COLORS = [
+  "#002d18", // Dark purple (default)
+  "#2c1142", // Dark green
+  "#1a1a2e", // Dark navy blue
+  "#2d1b1b", // Dark burgundy
+  "#1c2833", // Dark slate
+];
+// ============================================
+
 const variantParams: Record<Variant, VariantParams> = {
   shorter: {
     speedMultiplier: 1.1,
-    minStretchMultiplier: 1/3,
-    maxStretchMultiplier: 2/3,
+    minStretchMultiplier: 1 / 3,
+    maxStretchMultiplier: 2 / 3,
     colors: ["#63C34A", "#ffffff"],
-    spikeChance: 0.0005,       // ~few spikes per second
-    spikeMaxStretch: 0.77,     // 15% taller than 0.67
+    spikeChance: 0.0005, // ~few spikes per second
+    spikeMaxStretch: 0.77, // 15% taller than 0.67
     spikeSpeedMultiplier: 1.5, // 50% faster during spike
   },
   taller: {
@@ -68,7 +80,7 @@ function Home() {
   const navigate = useNavigate();
   const [variantIndex, setVariantIndex] = useState(0);
   const variantRef = useRef(variantIndex);
-  const [isDarkGreen, setIsDarkGreen] = useState(false);
+  const [bgColorIndex, setBgColorIndex] = useState(0);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -140,27 +152,40 @@ function Home() {
 
         // Check if spike should start (only when line is near its lowest point)
         const currentStretch = (Math.sin(line.phase) + 1) / 2;
-        if (!line.isSpiking && params.spikeChance > 0 && currentStretch < 0.1 && Math.random() < params.spikeChance) {
+        if (
+          !line.isSpiking &&
+          params.spikeChance > 0 &&
+          currentStretch < 0.1 &&
+          Math.random() < params.spikeChance
+        ) {
           line.isSpiking = true;
           line.phase = -Math.PI / 2; // Reset to bottom so surge grows upward
           line.spikeStartPhase = line.phase;
         }
 
         // Use spike or normal multipliers
-        const speedMult = line.isSpiking ? params.spikeSpeedMultiplier : params.speedMultiplier;
-        const maxStretchMult = line.isSpiking ? params.spikeMaxStretch : params.maxStretchMultiplier;
+        const speedMult = line.isSpiking
+          ? params.spikeSpeedMultiplier
+          : params.speedMultiplier;
+        const maxStretchMult = line.isSpiking
+          ? params.spikeMaxStretch
+          : params.maxStretchMultiplier;
 
         line.phase += line.speed * 0.015 * speedMult;
 
         // End spike after one full cycle (2*PI)
-        if (line.isSpiking && line.phase - line.spikeStartPhase >= Math.PI * 2) {
+        if (
+          line.isSpiking &&
+          line.phase - line.spikeStartPhase >= Math.PI * 2
+        ) {
           line.isSpiking = false;
         }
 
         const stretchFactor = (Math.sin(line.phase) + 1) / 2;
         const minStretch = line.maxStretch * params.minStretchMultiplier;
         const maxStretch = line.maxStretch * maxStretchMult;
-        const actualStretch = minStretch + stretchFactor * (maxStretch - minStretch);
+        const actualStretch =
+          minStretch + stretchFactor * (maxStretch - minStretch);
         const topY = bottomY - actualStretch * maxStretchZone;
 
         // Calculate downward stretch for green lines in free mode
@@ -200,7 +225,7 @@ function Home() {
   };
 
   const handleBackgroundToggle = () => {
-    setIsDarkGreen((prev) => !prev);
+    setBgColorIndex((prev) => (prev + 1) % BACKGROUND_COLORS.length);
   };
 
   // Keep ref in sync with state for use in animation loop
@@ -209,7 +234,10 @@ function Home() {
   }, [variantIndex]);
 
   return (
-    <div className="grass-container" style={{ backgroundColor: isDarkGreen ? '#002d18' : '#2c1142' }}>
+    <div
+      className="grass-container"
+      style={{ backgroundColor: BACKGROUND_COLORS[bgColorIndex] }}
+    >
       <img
         src={relvaFullLogo}
         alt="Relva"
@@ -232,7 +260,17 @@ function Home() {
         className="logo-bottom-right"
       />
 
-      <div style={{ paddingLeft: 2, marginLeft: 2, width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}>
+      <div
+        style={{
+          paddingLeft: 2,
+          marginLeft: 2,
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      >
         <svg
           ref={svgRef}
           className="grass-svg"
