@@ -36,11 +36,11 @@ interface VariantParams {
 const BACKGROUND_COLORS = [
   "#002d18", // Dark green (default)
   "#2c1142", // Dark purple
+  "#400834", // Deep dark magenta
   "#151530", // Dark navy blue
-  "#591111", // Dark burgundy
   "#1c2833", // Dark slate
-  "#1a1a1a", // Dark charcoal
-  "#4a0a3d", // Deep dark magenta
+  "#591111", // Dark burgundy
+  "#222222", // Dark charcoal
 ];
 // ============================================
 
