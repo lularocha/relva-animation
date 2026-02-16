@@ -86,20 +86,20 @@ function AboutUs() {
       </section>
 
       {/* Highlights Section */}
-      <section id="highlights" className="pt-4 pb-16 md:py-16 px-4 md:px-8 lg:px-16 bg-[#63c34a]">
+      <section id="highlights" className="pt-4 pb-16 md:py-16 px-4 md:px-8 lg:px-16 bg-[#151530]">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Missão */}
-            <div className="text-center p-8 rounded-lg bg-[#63c34a] hover:bg-[#56b33f] transition-colors">
+            <div className="text-center p-8 rounded-lg bg-[#151530] hover:bg-[#1e1e40] transition-colors">
               <Target className="w-12 h-12 mx-auto mb-4 text-white" />
-              <h2 className="text-2xl font-bold mb-3 text-[#004d28]">Missão</h2>
+              <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">Missão</h2>
               <p className="text-white mb-4">
                 Avançar a ciência ambiental através de pesquisas inovadoras e práticas
                 sustentáveis que beneficiam comunidades e ecossistemas.
               </p>
               <a
                 href="#"
-                className="text-[#004d28] hover:text-[#003d20] transition-colors inline-flex items-center gap-1 font-medium"
+                className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium"
               >
                 Saiba mais
                 <span aria-hidden="true">&rarr;</span>
@@ -107,16 +107,16 @@ function AboutUs() {
             </div>
 
             {/* Visão */}
-            <div className="text-center p-8 rounded-lg bg-[#63c34a] hover:bg-[#56b33f] transition-colors">
+            <div className="text-center p-8 rounded-lg bg-[#151530] hover:bg-[#1e1e40] transition-colors">
               <Eye className="w-12 h-12 mx-auto mb-4 text-white" />
-              <h2 className="text-2xl font-bold mb-3 text-[#004d28]">Visão</h2>
+              <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">Visão</h2>
               <p className="text-white mb-4">
                 Um mundo onde a gestão ambiental, metodologia científica e tecnologia criam um futuro
                 sustentável para muitas gerações que estão por vir.
               </p>
               <a
                 href="#"
-                className="text-[#004d28] hover:text-[#003d20] transition-colors inline-flex items-center gap-1 font-medium"
+                className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium"
               >
                 Saiba mais
                 <span aria-hidden="true">&rarr;</span>
@@ -124,16 +124,16 @@ function AboutUs() {
             </div>
 
             {/* Valores */}
-            <div className="text-center p-8 rounded-lg bg-[#63c34a] hover:bg-[#56b33f] transition-colors">
+            <div className="text-center p-8 rounded-lg bg-[#151530] hover:bg-[#1e1e40] transition-colors">
               <Leaf className="w-12 h-12 mx-auto mb-4 text-white" />
-              <h2 className="text-2xl font-bold mb-3 text-[#004d28]">Valores</h2>
+              <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">Valores</h2>
               <p className="text-white mb-4">
                 Integridade, colaboração e um profundo compromisso com a responsabilidade
                 ambiental guiam tudo o que fazemos no Instituto Relva.
               </p>
               <a
                 href="#"
-                className="text-[#004d28] hover:text-[#003d20] transition-colors inline-flex items-center gap-1 font-medium"
+                className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium"
               >
                 Saiba mais
                 <span aria-hidden="true">&rarr;</span>
