@@ -27,7 +27,7 @@ function AboutUs() {
         </Link>
 
         {/* Hero content */}
-        <div className="relative z-10 text-center text-white px-4 -mt-[120px] md:-mt-[50px]">
+        <div className="relative z-10 text-center text-white px-4 -mt-[190px] md:-mt-[50px]">
           <a
             href="#highlights"
             onClick={(e) => {
