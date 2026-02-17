@@ -30,7 +30,7 @@ body {
 /* Top center - Full logo */
 .logo-top-center {
     position: absolute;
-    top: 5%;
+    top: 6%;
     left: 50%;
     transform: translateX(-50%);
     height: 150px;
