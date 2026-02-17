@@ -1,36 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
 import relvaWordmark from "../assets/logos/relva-app-woodmark.svg";
 import relvaInstitutoText from "../assets/logos/relva-app-text.svg";
 
-interface GrassLine {
-  x: number;
-  strokeWidth: number;
-  speed: number;
-  phase: number;
-  maxStretch: number;
-  color: string;
-  isSpiking: boolean;
-  spikeStartPhase: number;
-}
+// TEMPORARILY DISABLED FOR TESTING
+// interface GrassLine {
+//   x: number;
+//   strokeWidth: number;
+//   speed: number;
+//   phase: number;
+//   maxStretch: number;
+//   color: string;
+//   isSpiking: boolean;
+//   spikeStartPhase: number;
+// }
 
-const variants = ["shorter", "taller", "free"] as const;
-type Variant = (typeof variants)[number];
+// const variants = ["shorter", "taller", "free"] as const;
+// type Variant = (typeof variants)[number];
 
-interface VariantParams {
-  speedMultiplier: number;
-  minStretchMultiplier: number;
-  maxStretchMultiplier: number;
-  colors: string[];
-  spikeChance: number;
-  spikeMaxStretch: number;
-  spikeSpeedMultiplier: number;
-  greenDownwardStretch?: number;
-  greenBaseOffset?: number;
-  minHeight?: number;
-}
+// interface VariantParams {
+//   speedMultiplier: number;
+//   minStretchMultiplier: number;
+//   maxStretchMultiplier: number;
+//   colors: string[];
+//   spikeChance: number;
+//   spikeMaxStretch: number;
+//   spikeSpeedMultiplier: number;
+//   greenDownwardStretch?: number;
+//   greenBaseOffset?: number;
+//   minHeight?: number;
+// }
 
 // ============================================
 // BACKGROUND COLORS - Edit hex values here
@@ -46,44 +47,47 @@ const BACKGROUND_COLORS = [
 ];
 // ============================================
 
-const variantParams: Record<Variant, VariantParams> = {
-  shorter: {
-    speedMultiplier: 1.1,
-    minStretchMultiplier: 1 / 3,
-    maxStretchMultiplier: 2 / 3,
-    colors: ["#63C34A", "#ffffff"],
-    spikeChance: 0.0005, // ~few spikes per second
-    spikeMaxStretch: 0.77, // 15% taller than 0.67
-    spikeSpeedMultiplier: 1.5, // 50% faster during spike
-  },
-  taller: {
-    speedMultiplier: 0.37,
-    minStretchMultiplier: 1 / 4,
-    maxStretchMultiplier: 1,
-    colors: ["#63C34A", "#ffffff"],
-    spikeChance: 0,
-    spikeMaxStretch: 1,
-    spikeSpeedMultiplier: 1,
-  },
-  free: {
-    speedMultiplier: 0.37,
-    minStretchMultiplier: 1 / 4,
-    maxStretchMultiplier: 1,
-    colors: ["#63C34A", "#ffffff"],
-    spikeChance: 0,
-    spikeMaxStretch: 1,
-    spikeSpeedMultiplier: 1,
-    greenBaseOffset: 10,
-  },
-};
+// TEMPORARILY DISABLED FOR TESTING
+// const variantParams: Record<Variant, VariantParams> = {
+//   shorter: {
+//     speedMultiplier: 1.1,
+//     minStretchMultiplier: 1 / 3,
+//     maxStretchMultiplier: 2 / 3,
+//     colors: ["#63C34A", "#ffffff"],
+//     spikeChance: 0.0005, // ~few spikes per second
+//     spikeMaxStretch: 0.77, // 15% taller than 0.67
+//     spikeSpeedMultiplier: 1.5, // 50% faster during spike
+//   },
+//   taller: {
+//     speedMultiplier: 0.37,
+//     minStretchMultiplier: 1 / 4,
+//     maxStretchMultiplier: 1,
+//     colors: ["#63C34A", "#ffffff"],
+//     spikeChance: 0,
+//     spikeMaxStretch: 1,
+//     spikeSpeedMultiplier: 1,
+//   },
+//   free: {
+//     speedMultiplier: 0.37,
+//     minStretchMultiplier: 1 / 4,
+//     maxStretchMultiplier: 1,
+//     colors: ["#63C34A", "#ffffff"],
+//     spikeChance: 0,
+//     spikeMaxStretch: 1,
+//     spikeSpeedMultiplier: 1,
+//     greenBaseOffset: 10,
+//   },
+// };
 
 function Home() {
   const svgRef = useRef<SVGSVGElement>(null);
-  const linesRef = useRef<GrassLine[]>([]);
-  const animationRef = useRef<number>(0);
+  // TEMPORARILY DISABLED FOR TESTING
+  // const linesRef = useRef<GrassLine[]>([]);
+  // const animationRef = useRef<number>(0);
   const navigate = useNavigate();
-  const [variantIndex, setVariantIndex] = useState(0);
-  const variantRef = useRef(variantIndex);
+  // TEMPORARILY DISABLED FOR TESTING
+  // const [variantIndex, setVariantIndex] = useState(0);
+  // const variantRef = useRef(variantIndex);
   const [bgColorIndex, setBgColorIndex] = useState(0);
 
   // TEMPORARILY DISABLED FOR TESTING - suspected cause of browser crashes on older hardware
@@ -231,31 +235,32 @@ function Home() {
     navigate("/about");
   };
 
-  const handleAnimationClick = (e: React.MouseEvent<SVGSVGElement>) => {
-    // Exclude bottom-right corner area where the woodmark is (for bg color cycling)
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const bottomRightPadding = 150; // Area to exclude from animation click
+  // TEMPORARILY DISABLED FOR TESTING
+  // const handleAnimationClick = (e: React.MouseEvent<SVGSVGElement>) => {
+  //   // Exclude bottom-right corner area where the woodmark is (for bg color cycling)
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   const x = e.clientX - rect.left;
+  //   const y = e.clientY - rect.top;
+  //   const bottomRightPadding = 150; // Area to exclude from animation click
 
-    if (
-      x > rect.width - bottomRightPadding &&
-      y > rect.height - bottomRightPadding
-    ) {
-      return; // Ignore clicks in the bottom-right corner
-    }
+  //   if (
+  //     x > rect.width - bottomRightPadding &&
+  //     y > rect.height - bottomRightPadding
+  //   ) {
+  //     return; // Ignore clicks in the bottom-right corner
+  //   }
 
-    setVariantIndex((prev) => (prev + 1) % variants.length);
-  };
+  //   setVariantIndex((prev) => (prev + 1) % variants.length);
+  // };
 
   const handleBackgroundToggle = () => {
     setBgColorIndex((prev) => (prev + 1) % BACKGROUND_COLORS.length);
   };
 
-  // Keep ref in sync with state for use in animation loop
-  useEffect(() => {
-    variantRef.current = variantIndex;
-  }, [variantIndex]);
+  // TEMPORARILY DISABLED FOR TESTING
+  // useEffect(() => {
+  //   variantRef.current = variantIndex;
+  // }, [variantIndex]);
 
   return (
     <div
@@ -301,8 +306,7 @@ function Home() {
           width="100%"
           height="100%"
           preserveAspectRatio="none"
-          onClick={handleAnimationClick}
-          style={{ cursor: "pointer" }}
+          // onClick={handleAnimationClick} // TEMPORARILY DISABLED FOR TESTING
         />
       </div>
     </div>
