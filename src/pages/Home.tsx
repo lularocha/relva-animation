@@ -230,7 +230,20 @@ function Home() {
     navigate("/about");
   };
 
-  const handleAnimationClick = () => {
+  const handleAnimationClick = (e: React.MouseEvent<SVGSVGElement>) => {
+    // Exclude bottom-right corner area where the woodmark is (for bg color cycling)
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const bottomRightPadding = 150; // Area to exclude from animation click
+
+    if (
+      x > rect.width - bottomRightPadding &&
+      y > rect.height - bottomRightPadding
+    ) {
+      return; // Ignore clicks in the bottom-right corner
+    }
+
     setVariantIndex((prev) => (prev + 1) % variants.length);
   };
 
