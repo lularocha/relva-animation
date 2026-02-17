@@ -170,7 +170,7 @@ function AboutUs() {
               />
               <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
                 <h3 className="text-xl font-bold mb-2 text-[#004d28]">
-                  Título da Notícia 1
+                  Rios Voadores
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Lorem ipsum dolor sit amet, consectur adipiscing elit. Sed do
@@ -195,7 +195,7 @@ function AboutUs() {
               />
               <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
                 <h3 className="text-xl font-bold mb-2 text-[#004d28]">
-                  Título da Notícia 2
+                  Inteligência Ambiental
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Lorem ipsum dolor sit amet, consectur adipiscing elit. Sed do
@@ -220,7 +220,7 @@ function AboutUs() {
               />
               <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
                 <h3 className="text-xl font-bold mb-2 text-[#004d28]">
-                  Título da Notícia 3
+                  No Go Mining
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Lorem ipsum dolor sit amet, consectur adipiscing elit. Sed do
