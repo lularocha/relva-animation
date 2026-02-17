@@ -86,145 +86,146 @@ function Home() {
   const variantRef = useRef(variantIndex);
   const [bgColorIndex, setBgColorIndex] = useState(0);
 
-  useEffect(() => {
-    const svg = svgRef.current;
-    if (!svg) return;
+  // TEMPORARILY DISABLED FOR TESTING - suspected cause of browser crashes on older hardware
+  // useEffect(() => {
+  //   const svg = svgRef.current;
+  //   if (!svg) return;
 
-    const generateLines = () => {
-      const lines: GrassLine[] = [];
-      const width = window.innerWidth;
-      const lineCount = Math.floor(width / 8);
-      const grassColors = ["#63C34A", "#ffffff"];
+  //   const generateLines = () => {
+  //     const lines: GrassLine[] = [];
+  //     const width = window.innerWidth;
+  //     const lineCount = Math.floor(width / 8);
+  //     const grassColors = ["#63C34A", "#ffffff"];
 
-      for (let i = 0; i < lineCount; i++) {
-        const x = 1 + (i / lineCount) * width;
-        const strokeWidth = 2 + Math.random() * 0;
-        const speed = 0.5 + Math.random() * 1.5;
-        const phase = Math.random() * Math.PI * 2;
-        const maxStretch = 0.3 + Math.random() * 0.7;
-        const color = grassColors[i % grassColors.length];
+  //     for (let i = 0; i < lineCount; i++) {
+  //       const x = 1 + (i / lineCount) * width;
+  //       const strokeWidth = 2 + Math.random() * 0;
+  //       const speed = 0.5 + Math.random() * 1.5;
+  //       const phase = Math.random() * Math.PI * 2;
+  //       const maxStretch = 0.3 + Math.random() * 0.7;
+  //       const color = grassColors[i % grassColors.length];
 
-        lines.push({
-          x,
-          strokeWidth,
-          speed,
-          phase,
-          maxStretch,
-          color,
-          isSpiking: false,
-          spikeStartPhase: 0,
-        });
-      }
-      return lines;
-    };
+  //       lines.push({
+  //         x,
+  //         strokeWidth,
+  //         speed,
+  //         phase,
+  //         maxStretch,
+  //         color,
+  //         isSpiking: false,
+  //         spikeStartPhase: 0,
+  //       });
+  //     }
+  //     return lines;
+  //   };
 
-    linesRef.current = generateLines();
+  //   linesRef.current = generateLines();
 
-    const createLineElements = () => {
-      svg.innerHTML = "";
-      linesRef.current.forEach((line, index) => {
-        const lineEl = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "line",
-        );
-        lineEl.setAttribute("x1", String(line.x));
-        lineEl.setAttribute("x2", String(line.x));
-        lineEl.setAttribute("stroke", line.color);
-        lineEl.setAttribute("stroke-width", String(line.strokeWidth));
-        lineEl.setAttribute("stroke-linecap", "round");
-        lineEl.setAttribute("opacity", String(1 + Math.random() * 0));
-        lineEl.setAttribute("data-index", String(index));
-        svg.appendChild(lineEl);
-      });
-    };
+  //   const createLineElements = () => {
+  //     svg.innerHTML = "";
+  //     linesRef.current.forEach((line, index) => {
+  //       const lineEl = document.createElementNS(
+  //         "http://www.w3.org/2000/svg",
+  //         "line",
+  //       );
+  //       lineEl.setAttribute("x1", String(line.x));
+  //       lineEl.setAttribute("x2", String(line.x));
+  //       lineEl.setAttribute("stroke", line.color);
+  //       lineEl.setAttribute("stroke-width", String(line.strokeWidth));
+  //       lineEl.setAttribute("stroke-linecap", "round");
+  //       lineEl.setAttribute("opacity", String(1 + Math.random() * 0));
+  //       lineEl.setAttribute("data-index", String(index));
+  //       svg.appendChild(lineEl);
+  //     });
+  //   };
 
-    createLineElements();
+  //   createLineElements();
 
-    const animate = () => {
-      const lineElements = svg.querySelectorAll("line");
-      const canvasHeight = window.innerHeight;
-      const bottomY = canvasHeight * (2 / 3);
-      const maxStretchZone = canvasHeight / 3;
+  //   const animate = () => {
+  //     const lineElements = svg.querySelectorAll("line");
+  //     const canvasHeight = window.innerHeight;
+  //     const bottomY = canvasHeight * (2 / 3);
+  //     const maxStretchZone = canvasHeight / 3;
 
-      // Get current variant params
-      const currentVariant = variants[variantRef.current];
-      const params = variantParams[currentVariant];
+  //     // Get current variant params
+  //     const currentVariant = variants[variantRef.current];
+  //     const params = variantParams[currentVariant];
 
-      lineElements.forEach((lineEl, index) => {
-        const line = linesRef.current[index];
-        if (!line) return;
+  //     lineElements.forEach((lineEl, index) => {
+  //       const line = linesRef.current[index];
+  //       if (!line) return;
 
-        // Check if spike should start (only when line is near its lowest point)
-        const currentStretch = (Math.sin(line.phase) + 1) / 2;
-        if (
-          !line.isSpiking &&
-          params.spikeChance > 0 &&
-          currentStretch < 0.1 &&
-          Math.random() < params.spikeChance
-        ) {
-          line.isSpiking = true;
-          line.phase = -Math.PI / 2; // Reset to bottom so surge grows upward
-          line.spikeStartPhase = line.phase;
-        }
+  //       // Check if spike should start (only when line is near its lowest point)
+  //       const currentStretch = (Math.sin(line.phase) + 1) / 2;
+  //       if (
+  //         !line.isSpiking &&
+  //         params.spikeChance > 0 &&
+  //         currentStretch < 0.1 &&
+  //         Math.random() < params.spikeChance
+  //       ) {
+  //         line.isSpiking = true;
+  //         line.phase = -Math.PI / 2; // Reset to bottom so surge grows upward
+  //         line.spikeStartPhase = line.phase;
+  //       }
 
-        // Use spike or normal multipliers
-        const speedMult = line.isSpiking
-          ? params.spikeSpeedMultiplier
-          : params.speedMultiplier;
-        const maxStretchMult = line.isSpiking
-          ? params.spikeMaxStretch
-          : params.maxStretchMultiplier;
+  //       // Use spike or normal multipliers
+  //       const speedMult = line.isSpiking
+  //         ? params.spikeSpeedMultiplier
+  //         : params.speedMultiplier;
+  //       const maxStretchMult = line.isSpiking
+  //         ? params.spikeMaxStretch
+  //         : params.maxStretchMultiplier;
 
-        line.phase += line.speed * 0.015 * speedMult;
+  //       line.phase += line.speed * 0.015 * speedMult;
 
-        // End spike after one full cycle (2*PI)
-        if (
-          line.isSpiking &&
-          line.phase - line.spikeStartPhase >= Math.PI * 2
-        ) {
-          line.isSpiking = false;
-        }
+  //       // End spike after one full cycle (2*PI)
+  //       if (
+  //         line.isSpiking &&
+  //         line.phase - line.spikeStartPhase >= Math.PI * 2
+  //       ) {
+  //         line.isSpiking = false;
+  //       }
 
-        const stretchFactor = (Math.sin(line.phase) + 1) / 2;
-        const minStretch = line.maxStretch * params.minStretchMultiplier;
-        const maxStretch = line.maxStretch * maxStretchMult;
-        const actualStretch =
-          minStretch + stretchFactor * (maxStretch - minStretch);
-        const topY = bottomY - actualStretch * maxStretchZone;
+  //       const stretchFactor = (Math.sin(line.phase) + 1) / 2;
+  //       const minStretch = line.maxStretch * params.minStretchMultiplier;
+  //       const maxStretch = line.maxStretch * maxStretchMult;
+  //       const actualStretch =
+  //         minStretch + stretchFactor * (maxStretch - minStretch);
+  //       const topY = bottomY - actualStretch * maxStretchZone;
 
-        // Calculate base offset for green lines in free mode (starts below white lines)
-        let actualBottomY = bottomY;
-        if (params.greenBaseOffset && line.color === "#63C34A") {
-          actualBottomY = bottomY + params.greenBaseOffset;
-        }
+  //       // Calculate base offset for green lines in free mode (starts below white lines)
+  //       let actualBottomY = bottomY;
+  //       if (params.greenBaseOffset && line.color === "#63C34A") {
+  //         actualBottomY = bottomY + params.greenBaseOffset;
+  //       }
 
-        // Enforce minimum height constraint
-        let finalTopY = topY;
-        if (params.minHeight && actualBottomY - topY < params.minHeight) {
-          finalTopY = actualBottomY - params.minHeight;
-        }
+  //       // Enforce minimum height constraint
+  //       let finalTopY = topY;
+  //       if (params.minHeight && actualBottomY - topY < params.minHeight) {
+  //         finalTopY = actualBottomY - params.minHeight;
+  //       }
 
-        lineEl.setAttribute("y1", String(actualBottomY));
-        lineEl.setAttribute("y2", String(finalTopY));
-      });
+  //       lineEl.setAttribute("y1", String(actualBottomY));
+  //       lineEl.setAttribute("y2", String(finalTopY));
+  //     });
 
-      animationRef.current = requestAnimationFrame(animate);
-    };
+  //     animationRef.current = requestAnimationFrame(animate);
+  //   };
 
-    animate();
+  //   animate();
 
-    const handleResize = () => {
-      linesRef.current = generateLines();
-      createLineElements();
-    };
+  //   const handleResize = () => {
+  //     linesRef.current = generateLines();
+  //     createLineElements();
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      cancelAnimationFrame(animationRef.current);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     cancelAnimationFrame(animationRef.current);
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   const handleLogoClick = () => {
     navigate("/about");
