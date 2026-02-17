@@ -214,7 +214,7 @@ function AboutUs() {
             {/* News Item 3 */}
             <div className="group text-left overflow-hidden hover:bg-white transition-colors cursor-pointer">
               <img
-                src="/images/news5.jpg"
+                src="/images/news6.jpg"
                 alt="Notícia 3"
                 className="w-full aspect-[3/2] object-cover"
               />
