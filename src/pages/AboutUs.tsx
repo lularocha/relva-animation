@@ -143,6 +143,80 @@ function AboutUs() {
         </div>
       </section>
 
+      {/* Notícias Recentes Section */}
+      <section className="py-16 px-4 md:px-8 lg:px-16 bg-[#e8f5e3]">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-[#004d28] text-left">Notícias Recentes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* News Item 1 */}
+            <div className="group text-left overflow-hidden hover:bg-white transition-colors cursor-pointer">
+              <img
+                src="/images/news3.jpg"
+                alt="Notícia 1"
+                className="w-full aspect-[3/2] object-cover"
+              />
+              <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
+                <h3 className="text-xl font-bold mb-2 text-[#004d28]">Título da Notícia 1</h3>
+                <p className="text-gray-600 mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+                </p>
+                <a
+                  href="#"
+                  className="text-[#1da348] hover:text-[#63c34a] transition-colors inline-flex items-center gap-1 font-medium"
+                >
+                  Saiba mais
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            {/* News Item 2 */}
+            <div className="group text-left overflow-hidden hover:bg-white transition-colors cursor-pointer">
+              <img
+                src="/images/news4.jpg"
+                alt="Notícia 2"
+                className="w-full aspect-[3/2] object-cover"
+              />
+              <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
+                <h3 className="text-xl font-bold mb-2 text-[#004d28]">Título da Notícia 2</h3>
+                <p className="text-gray-600 mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+                </p>
+                <a
+                  href="#"
+                  className="text-[#1da348] hover:text-[#63c34a] transition-colors inline-flex items-center gap-1 font-medium"
+                >
+                  Saiba mais
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            {/* News Item 3 */}
+            <div className="group text-left overflow-hidden hover:bg-white transition-colors cursor-pointer">
+              <img
+                src="/images/news5.jpg"
+                alt="Notícia 3"
+                className="w-full aspect-[3/2] object-cover"
+              />
+              <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
+                <h3 className="text-xl font-bold mb-2 text-[#004d28]">Título da Notícia 3</h3>
+                <p className="text-gray-600 mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+                </p>
+                <a
+                  href="#"
+                  className="text-[#1da348] hover:text-[#63c34a] transition-colors inline-flex items-center gap-1 font-medium"
+                >
+                  Saiba mais
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Two Column Section */}
       <section className="py-16 px-4 md:px-8 lg:px-16 bg-white">
         <div className="max-w-6xl mx-auto">
