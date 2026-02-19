@@ -199,7 +199,8 @@ function Home() {
             line.color === "#63C34A" ? (params.waveGreenOffset ?? Math.PI / 6) : 0;
           stretchFactor =
             (Math.sin(index * k - waveOffset + colorPhaseOffset) + 1) / 2;
-          effectiveMaxStretchMult = params.maxStretchMultiplier;
+          const isMobile = window.innerWidth < 768;
+          effectiveMaxStretchMult = isMobile ? 1 / 2 : params.maxStretchMultiplier;
         } else {
           // Check if spike should start (only when line is near its lowest point)
           const currentStretch = (Math.sin(line.phase) + 1) / 2;
@@ -239,7 +240,7 @@ function Home() {
 
         // Wave variant uses uniform amplitude; other variants use per-line random maxStretch
         const lineAmplitude = currentVariant === "free"
-          ? (line.color === "#63C34A" ? 1.0 : 0.8)
+          ? (line.color === "#63C34A" ? 0.8 : 0.8)
           : line.maxStretch;
         const minStretch = lineAmplitude * params.minStretchMultiplier;
         const maxStretch = lineAmplitude * effectiveMaxStretchMult;
