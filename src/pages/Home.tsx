@@ -16,7 +16,7 @@ interface GrassLine {
   spikeStartPhase: number;
 }
 
-const variants = ["shorter", "taller", "free"] as const;
+const variants = ["shorter", "taller"] as const; // "free" disabled
 type Variant = (typeof variants)[number];
 
 interface VariantParams {
@@ -51,7 +51,7 @@ const BACKGROUND_COLORS = [
 const TARGET_FPS = 30;
 const FRAME_INTERVAL = 1000 / TARGET_FPS;
 
-const variantParams: Record<Variant, VariantParams> = {
+const variantParams: Record<Variant | "free", VariantParams> = {
   shorter: {
     speedMultiplier: 1.1,
     minStretchMultiplier: 1 / 3,
@@ -70,6 +70,7 @@ const variantParams: Record<Variant, VariantParams> = {
     spikeMaxStretch: 1,
     spikeSpeedMultiplier: 1,
   },
+  // disabled — re-add "free" to variants array to re-enable
   free: {
     speedMultiplier: 0.37,
     minStretchMultiplier: 1 / 4,

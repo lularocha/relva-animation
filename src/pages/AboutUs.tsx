@@ -173,8 +173,8 @@ function AboutUs() {
                   Rios Voadores
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Lorem ipsum dolor sit amet, consectur adipiscing elit. Sed do
-                  eiusmod tempor incididunt ut labore.
+                  Lorem ipsum dolor sit amet, consectur elit, Seed eiusmod
+                  tempor incididunt ut labore exercitation ullamco.
                 </p>
                 <a
                   href="#"
@@ -198,8 +198,8 @@ function AboutUs() {
                   Inteligência Ambiental
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Lorem ipsum dolor sit amet, consectur adipiscing elit. Sed do
-                  eiusmod tempor incididunt ut labore.
+                  Lorem ipsum dolor sit amet, consectur elit, Seed eiusmod
+                  tempor incididunt ut labore exercitation ullamco.
                 </p>
                 <a
                   href="#"
@@ -223,8 +223,8 @@ function AboutUs() {
                   No Go Mining
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Lorem ipsum dolor sit amet, consectur adipiscing elit. Sed do
-                  eiusmod tempor incididunt ut labore.
+                  Lorem ipsum dolor sit amet, consectur elit, Seed eiusmod
+                  tempor incididunt ut labore exercitation ullamco.
                 </p>
                 <a
                   href="#"
