@@ -53,10 +53,10 @@ const BACKGROUND_COLORS = [
 // Accent color for the non-white lines, paired to each background
 const ACCENT_COLORS: Record<string, string> = {
   "#002d18": "#63C34A", // dark green → green
-  "#401500": "#FFA200", // terra dark → orange
-  "#151530": "#4DACFF", // dark navy → blue
+  "#401500": "#FF8000", // terra dark → orange
+  "#151530": "#0088ff", // dark navy → blue
   "#2c1142": "#63C34A", // dark purple → green
-  "#400834": "#63C34A", // deep magenta → green
+  "#400834": "#cc3d88", // deep magenta → green
   "#1c2833": "#63C34A", // dark slate → green
 };
 // ============================================
@@ -201,17 +201,22 @@ function Home() {
           const k = (2 * Math.PI * numWaves) / totalLines;
           // Green and white lines travel at slightly different speeds
           const baseSpeed = params.waveSpeed ?? 0.02;
-          const speed = line.color !== "#ffffff"
-            ? baseSpeed
-            : baseSpeed * (params.waveSecondarySpeedRatio ?? 0.85);
+          const speed =
+            line.color !== "#ffffff"
+              ? baseSpeed
+              : baseSpeed * (params.waveSecondarySpeedRatio ?? 0.85);
           const waveOffset = waveTimeRef.current * speed;
           // Non-white (accent) lines are slightly ahead in phase for a subtle layered look
           const colorPhaseOffset =
-            line.color !== "#ffffff" ? (params.waveGreenOffset ?? Math.PI / 6) : 0;
+            line.color !== "#ffffff"
+              ? (params.waveGreenOffset ?? Math.PI / 6)
+              : 0;
           stretchFactor =
             (Math.sin(index * k - waveOffset + colorPhaseOffset) + 1) / 2;
           const isMobile = window.innerWidth < 768;
-          effectiveMaxStretchMult = isMobile ? 1 / 2 : params.maxStretchMultiplier;
+          effectiveMaxStretchMult = isMobile
+            ? 1 / 2
+            : params.maxStretchMultiplier;
         } else {
           // Check if spike should start (only when line is near its lowest point)
           const currentStretch = (Math.sin(line.phase) + 1) / 2;
@@ -250,9 +255,12 @@ function Home() {
         }
 
         // Wave variant uses uniform amplitude; other variants use per-line random maxStretch
-        const lineAmplitude = currentVariant === "free"
-          ? (line.color !== "#ffffff" ? 0.8 : 0.8)
-          : line.maxStretch;
+        const lineAmplitude =
+          currentVariant === "free"
+            ? line.color !== "#ffffff"
+              ? 0.8
+              : 0.8
+            : line.maxStretch;
         const minStretch = lineAmplitude * params.minStretchMultiplier;
         const maxStretch = lineAmplitude * effectiveMaxStretchMult;
         const actualStretch =
@@ -292,7 +300,8 @@ function Home() {
 
   // Swap accent color when background changes
   useEffect(() => {
-    const newAccent = ACCENT_COLORS[BACKGROUND_COLORS[bgColorIndex]] ?? "#63C34A";
+    const newAccent =
+      ACCENT_COLORS[BACKGROUND_COLORS[bgColorIndex]] ?? "#63C34A";
     const oldAccent = accentColorRef.current;
     accentColorRef.current = newAccent;
 
