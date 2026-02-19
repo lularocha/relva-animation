@@ -53,7 +53,7 @@ const FRAME_INTERVAL = 1000 / TARGET_FPS;
 
 const variantParams: Record<Variant | "free", VariantParams> = {
   shorter: {
-    speedMultiplier: 1.1,
+    speedMultiplier: 0.5,
     minStretchMultiplier: 1 / 3,
     maxStretchMultiplier: 2 / 3,
     colors: ["#63C34A", "#ffffff"],
