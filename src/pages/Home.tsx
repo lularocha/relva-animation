@@ -124,11 +124,11 @@ function Home() {
 
       for (let i = 0; i < lineCount; i++) {
         const x = 1 + (i / lineCount) * width;
-        const strokeWidth = 2 + Math.random() * 0;
+        const color = grassColors[i % grassColors.length];
+        const strokeWidth = color !== "#ffffff" ? 3 : 2;
         const speed = 0.5 + Math.random() * 1.5;
         const phase = Math.random() * Math.PI * 2;
         const maxStretch = 0.3 + Math.random() * 0.7;
-        const color = grassColors[i % grassColors.length];
 
         lines.push({
           x,
