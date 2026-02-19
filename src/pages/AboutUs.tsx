@@ -172,7 +172,7 @@ function AboutUs() {
                 <h3 className="text-xl font-bold mb-2 text-[#004d28]">
                   Rios Voadores
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 pr-[15px]">
                   Lorem ipsum dolor sit amet, consectur elit, Seed eiusmod
                   tempor incididunt ut labore exercitation ullamco.
                 </p>
@@ -197,7 +197,7 @@ function AboutUs() {
                 <h3 className="text-xl font-bold mb-2 text-[#004d28]">
                   Inteligência Ambiental
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 pr-[15px]">
                   Lorem ipsum dolor sit amet, consectur elit, Seed eiusmod
                   tempor incididunt ut labore exercitation ullamco.
                 </p>
@@ -222,7 +222,7 @@ function AboutUs() {
                 <h3 className="text-xl font-bold mb-2 text-[#004d28]">
                   No Go Mining
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 pr-[15px]">
                   Lorem ipsum dolor sit amet, consectur elit, Seed eiusmod
                   tempor incididunt ut labore exercitation ullamco.
                 </p>
@@ -269,7 +269,7 @@ function AboutUs() {
 
       {/* Footer */}
       <footer className="py-8 px-4 bg-[#e8f5e3]">
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-left">
           <p className="text-gray-600 text-sm">
             © Instituto Relva 2026 . Todos os direitos reservados
           </p>
