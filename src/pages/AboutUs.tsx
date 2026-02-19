@@ -169,7 +169,7 @@ function AboutUs() {
                 className="w-full aspect-[3/2] object-cover"
               />
               <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
-                <h3 className="text-xl font-bold mb-2 text-[#004d28]">
+                <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   Rios Voadores
                 </h3>
                 <p className="text-gray-600 mb-4 pr-[15px]">
@@ -194,7 +194,7 @@ function AboutUs() {
                 className="w-full aspect-[3/2] object-cover"
               />
               <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
-                <h3 className="text-xl font-bold mb-2 text-[#004d28]">
+                <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   Inteligência Ambiental
                 </h3>
                 <p className="text-gray-600 mb-4 pr-[15px]">
@@ -219,7 +219,7 @@ function AboutUs() {
                 className="w-full aspect-[3/2] object-cover"
               />
               <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
-                <h3 className="text-xl font-bold mb-2 text-[#004d28]">
+                <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   No Go Mining
                 </h3>
                 <p className="text-gray-600 mb-4 pr-[15px]">
@@ -242,7 +242,7 @@ function AboutUs() {
       {/* Two Column Section */}
       <section className="pt-8 pb-16 md:py-16 px-4 md:px-8 lg:px-16 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             <div>
               <h2 className="text-2xl font-bold mb-4 text-[#004d28]">
                 História
@@ -263,12 +263,22 @@ function AboutUs() {
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris.
               </p>
             </div>
+            <div>
+              <h2 className="text-2xl font-bold mb-4 text-[#004d28]">
+                Projetos
+              </h2>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 bg-[#e8f5e3]">
+      <footer className="py-8 px-4 bg-white">
         <div className="max-w-6xl mx-auto text-left">
           <p className="text-gray-600 text-sm">
             © Instituto Relva 2026 . Todos os direitos reservados
