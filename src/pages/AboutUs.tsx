@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { Target, Eye, Leaf, ArrowLeft, ArrowDown, ArrowUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
 
 function AboutUs() {
   const [heroAnimated, setHeroAnimated] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const ratioMap = useRef<Record<string, number>>({});
 
   useEffect(() => {
     // Trigger animation after component mounts
@@ -20,6 +23,48 @@ function AboutUs() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+    const updateActive = () => {
+      if (!mediaQuery.matches) {
+        setActiveCard(null);
+        return;
+      }
+      let maxRatio = 0;
+      let maxId: string | null = null;
+      Object.entries(ratioMap.current).forEach(([id, ratio]) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          maxId = id;
+        }
+      });
+      setActiveCard(maxRatio > 0.3 ? maxId : null);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = (entry.target as HTMLDivElement).dataset.cardId!;
+          ratioMap.current[id] = entry.intersectionRatio;
+        });
+        updateActive();
+      },
+      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] }
+    );
+
+    Object.values(cardRefs.current).forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    mediaQuery.addEventListener("change", updateActive);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener("change", updateActive);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -97,7 +142,11 @@ function AboutUs() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Missão */}
-            <div className="text-center p-8 rounded-lg bg-[#151530] hover:bg-[#1e1e40] transition-colors">
+            <div
+              ref={(el) => { cardRefs.current["missao"] = el; }}
+              data-card-id="missao"
+              className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "missao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+            >
               <Target className="w-12 h-12 mx-auto mb-4 text-white" />
               <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">Missão</h2>
               <p className="text-white mb-4">
@@ -114,7 +163,11 @@ function AboutUs() {
             </div>
 
             {/* Visão */}
-            <div className="text-center p-8 rounded-lg bg-[#151530] hover:bg-[#1e1e40] transition-colors">
+            <div
+              ref={(el) => { cardRefs.current["visao"] = el; }}
+              data-card-id="visao"
+              className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "visao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+            >
               <Eye className="w-12 h-12 mx-auto mb-4 text-white" />
               <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">Visão</h2>
               <p className="text-white mb-4">
@@ -132,7 +185,11 @@ function AboutUs() {
             </div>
 
             {/* Valores */}
-            <div className="text-center p-8 rounded-lg bg-[#151530] hover:bg-[#1e1e40] transition-colors">
+            <div
+              ref={(el) => { cardRefs.current["valores"] = el; }}
+              data-card-id="valores"
+              className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "valores" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+            >
               <Leaf className="w-12 h-12 mx-auto mb-4 text-white" />
               <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">
                 Valores
@@ -162,13 +219,17 @@ function AboutUs() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* News Item 1 */}
-            <div className="group text-left overflow-hidden hover:bg-white transition-colors cursor-pointer">
+            <div
+              ref={(el) => { cardRefs.current["news1"] = el; }}
+              data-card-id="news1"
+              className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news1" ? "bg-white" : ""}`}
+            >
               <img
                 src="/images/news3.jpg"
                 alt="Notícia 1"
                 className="w-full aspect-[3/2] object-cover"
               />
-              <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
+              <div className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news1" ? "pl-[20px]" : "pl-0"}`}>
                 <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   Rios Voadores
                 </h3>
@@ -187,13 +248,17 @@ function AboutUs() {
             </div>
 
             {/* News Item 2 */}
-            <div className="group text-left overflow-hidden hover:bg-white transition-colors cursor-pointer">
+            <div
+              ref={(el) => { cardRefs.current["news2"] = el; }}
+              data-card-id="news2"
+              className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news2" ? "bg-white" : ""}`}
+            >
               <img
                 src="/images/news4.jpg"
                 alt="Notícia 2"
                 className="w-full aspect-[3/2] object-cover"
               />
-              <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
+              <div className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news2" ? "pl-[20px]" : "pl-0"}`}>
                 <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   Inteligência Ambiental
                 </h3>
@@ -212,13 +277,17 @@ function AboutUs() {
             </div>
 
             {/* News Item 3 */}
-            <div className="group text-left overflow-hidden hover:bg-white transition-colors cursor-pointer">
+            <div
+              ref={(el) => { cardRefs.current["news3"] = el; }}
+              data-card-id="news3"
+              className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news3" ? "bg-white" : ""}`}
+            >
               <img
                 src="/images/news6.jpg"
                 alt="Notícia 3"
                 className="w-full aspect-[3/2] object-cover"
               />
-              <div className="py-4 pl-0 group-hover:pl-[20px] transition-all duration-300">
+              <div className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news3" ? "pl-[20px]" : "pl-0"}`}>
                 <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   No Go Mining
                 </h3>
