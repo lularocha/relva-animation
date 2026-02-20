@@ -55,9 +55,9 @@ const ACCENT_COLORS: Record<string, string> = {
   "#002d18": "#63C34A", // dark green → green
   "#401500": "#FF8000", // terra dark → orange
   "#151530": "#0088ff", // dark navy → blue
-  "#2c1142": "#63C34A", // dark purple → green
+  "#2c1142": "#9947e2", // dark purple → green
   "#400834": "#cc3d88", // deep magenta → green
-  "#1c2833": "#63C34A", // dark slate → green
+  "#1c2833": "#008888", // dark slate → green
 };
 // ============================================
 
