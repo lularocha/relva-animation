@@ -61,8 +61,8 @@ const ACCENT_COLORS: Record<string, string> = {
 };
 // ============================================
 
-// Target 30fps for better performance on older devices
-const TARGET_FPS = 30;
+// Target 24fps for better performance on older devices
+const TARGET_FPS = 24;
 const FRAME_INTERVAL = 1000 / TARGET_FPS;
 
 const variantParams: Record<Variant, VariantParams> = {
