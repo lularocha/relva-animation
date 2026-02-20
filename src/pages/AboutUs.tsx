@@ -69,7 +69,7 @@ function AboutUs() {
             <img
               src={relvaFullLogo}
               alt="Relva"
-              className="h-60 md:h-96 mx-auto hover:scale-105 transition-transform"
+              className="h-60 md:h-96 mx-auto hover:scale-105 transition-transform logo-about-hero"
             />
           </a>
         </div>

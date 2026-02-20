@@ -27,6 +27,21 @@ body {
     overflow: hidden;
 }
 
+@keyframes slideInFromTopCentered {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.logo-about-hero {
+    animation: slideInFromTopCentered 0.6s ease-out 1.5s backwards;
+}
+
 @keyframes slideInFromTop {
     from {
         transform: translateX(-50%) translateY(-30px);
