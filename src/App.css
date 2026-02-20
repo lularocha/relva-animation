@@ -27,6 +27,17 @@ body {
     overflow: hidden;
 }
 
+@keyframes slideInFromTop {
+    from {
+        transform: translateX(-50%) translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
 /* Top center - Full logo */
 .logo-top-center {
     position: absolute;
@@ -36,6 +47,7 @@ body {
     height: 150px;
     z-index: 10;
     transition: transform 0.2s ease;
+    animation: slideInFromTop 0.6s ease-out 0.7s backwards;
 }
 
 .logo-top-center:hover {
