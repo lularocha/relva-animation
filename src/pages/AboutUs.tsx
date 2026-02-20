@@ -309,7 +309,7 @@ function AboutUs() {
       </section>
 
       {/* Two Column Section */}
-      <section className="pt-8 pb-16 md:py-16 px-4 md:px-8 lg:px-16 bg-white">
+      <section className="pt-8 pb-16 md:py-16 px-8 md:px-8 lg:px-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             <div>
