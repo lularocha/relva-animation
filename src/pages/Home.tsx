@@ -46,8 +46,7 @@ const BACKGROUND_COLORS = [
   "#151530", // Dark navy blue
   "#2c1142", // Dark purple
   "#400834", // Deep dark magenta
-  "#1c2833", // Dark slate
-  // "#222222", // Dark charcoal
+  "#1d252c", // Dark slate
 ];
 
 // Accent color for the non-white lines, paired to each background
@@ -57,7 +56,7 @@ const ACCENT_COLORS: Record<string, string> = {
   "#151530": "#0088ff", // dark navy → blue
   "#2c1142": "#9947e2", // dark purple → green
   "#400834": "#cc3d88", // deep magenta → green
-  "#1c2833": "#008888", // dark slate → green
+  "#1d252c": "#008888", // dark slate → green
 };
 // ============================================
 
