@@ -85,7 +85,7 @@ function AboutUs() {
           }}
           className="absolute bottom-[170px] md:bottom-[70px] left-1/2 -translate-x-1/2 z-10 cursor-pointer hover:scale-110 transition-transform"
         >
-          <ArrowDown className="w-10 h-10 text-[#1da348]" />
+          <ArrowDown className="w-10 h-10 text-[#63c34a]" />
         </a>
       </section>
 
