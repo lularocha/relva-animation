@@ -179,8 +179,8 @@ function AboutUs() {
               </h2>
               <p className="text-white mb-4">
                 Um mundo onde a gestão ambiental, metodologia científica e
-                tecnologia criam um futuro sustentável para muitas gerações que
-                estão por vir.
+                tecnologia criam um futuro sustentável para as próximas
+                gerações.
               </p>
               <span className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium">
                 Saiba mais
