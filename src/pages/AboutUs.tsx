@@ -296,7 +296,7 @@ function AboutUs() {
               className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news3" ? "bg-white" : ""}`}
             >
               <img
-                src="/images/news5.jpg"
+                src="/images/news7.jpg"
                 alt="Notícia 3"
                 className="w-full aspect-[3/2] object-cover"
               />
@@ -304,7 +304,7 @@ function AboutUs() {
                 className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news3" ? "pl-[20px]" : "pl-0"}`}
               >
                 <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
-                  No Go Mining
+                  Diálogo de Saberes
                 </h3>
                 <p className="text-gray-600 mb-4 pr-[15px]">
                   Lorem ipsum dolor sit amet, consectur elit, Seed eiusmod
