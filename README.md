@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+# Instituto Relva
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A prototype for a modern, animated website for Instituto Relva — built with React, TypeScript, and Vite. Features SVG-based physics grass animations, a password-gated access system, and a fully responsive UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- **Framework:** React 19 + TypeScript
+- **Build Tool:** Vite
+- **Routing:** React Router DOM v7
+- **Styling:** Tailwind CSS + Radix UI + Shadcn/ui components
+- **Icons:** Lucide React
+- **Forms:** React Hook Form + Zod
+- **Charts:** Recharts
+- **Deployment:** Vercel
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Animated Grass System** — SVG-based grass blade animations with physics-based movement across multiple variants (`shorter`, `taller`, `free`) optimized to 24 FPS
+- **Dynamic Color Themes** — Six paired background/accent color schemes switchable at runtime
+- **Password Gate** — Session-based authentication protecting all routes
+- **About Page** — Hero section with slide-down animation, scroll-to-top, and IntersectionObserver card activation
+- **Responsive Design** — Mobile-first with viewport-fit=cover support
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+relva-animation/
+├── public/
+│   └── images/              # Hero and news images
+├── src/
+│   ├── assets/
+│   │   └── logos/           # SVG logos (wordmark, symbol, icon)
+│   ├── components/
+│   │   ├── PasswordGate.tsx # Auth wrapper for all routes
+│   │   └── ui/              # Shadcn/ui component library
+│   ├── hooks/               # Custom React hooks
+│   ├── lib/                 # Utility functions
+│   ├── pages/
+│   │   ├── Home.tsx         # Homepage with animated grass
+│   │   └── AboutUs.tsx      # About page
+│   ├── App.tsx              # Root component + routing
+│   ├── App.css
+│   ├── index.css            # Global styles + Tailwind
+│   └── main.tsx
+├── index.html
+├── vite.config.ts
+├── tailwind.config.js
+├── tsconfig.app.json
+└── vercel.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Routes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Path     | Component   | Description                         |
+|----------|-------------|-------------------------------------|
+| `/`      | `Home`      | Homepage with animated grass effect |
+| `/about` | `AboutUs`   | About page with hero section        |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+All routes are wrapped by `PasswordGate`.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or pnpm
+
+### Installation
+
+```bash
+git clone <repo-url>
+cd relva-animation
+npm install
 ```
+
+### Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```env
+VITE_APP_PASSWORD=your_password_here
+```
+
+> **Note:** Never commit `.env.local` to version control. It is already listed in `.gitignore`.
+
+### Development
+
+```bash
+npm run dev
+```
+
+The app runs at `http://localhost:5173` by default.
+
+---
+
+## Scripts
+
+| Command         | Description                        |
+|-----------------|------------------------------------|
+| `npm run dev`   | Start the Vite development server  |
+| `npm run build` | Type-check and build for production|
+| `npm run preview` | Preview the production build     |
+| `npm run lint`  | Run ESLint                         |
+
+---
+
+## Deployment
+
+The project is configured for **Vercel** deployment via `vercel.json`. Push to the main branch to trigger an automatic deployment.
+
+Ensure the `VITE_APP_PASSWORD` environment variable is set in the Vercel project settings.
