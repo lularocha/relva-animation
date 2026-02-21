@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Paintbrush } from "lucide-react";
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
-import relvaWordmark from "../assets/logos/relva-app-woodmark.svg";
 import relvaInstitutoText from "../assets/logos/relva-app-text.svg";
 
 interface GrassLine {
@@ -55,8 +55,8 @@ const ACCENT_COLORS: Record<string, string> = {
   "#151530": "#0088ff", // dark navy → blue
   "#401500": "#FF8000", // terra dark → orange
   "#2c1142": "#9947e2", // dark purple → green
-  "#400834": "#cc3d88", // deep magenta → green
-  "#1d252c": "#008888", // dark slate → green
+  "#400834": "#ff0092", // deep magenta → green
+  "#1d252c": "#006aa5", // dark slate → green
 };
 // ============================================
 
@@ -362,13 +362,22 @@ function Home() {
         style={{ cursor: "pointer" }}
       />
 
-      <img
-        src={relvaWordmark}
-        alt="Relva"
-        className="logo-bottom-left"
+      <div
+        className="logo-bottom-left color-switcher-btn"
         onClick={handleBackgroundToggle}
-        style={{ cursor: "pointer" }}
-      />
+        style={{
+          cursor: "pointer",
+          width: 40,
+          height: 40,
+          borderRadius: "50%",
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Paintbrush size={20} color="#ffffff" />
+      </div>
 
       <img
         src={relvaInstitutoText}

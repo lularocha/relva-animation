@@ -78,6 +78,10 @@ body {
     z-index: 10;
 }
 
+.color-switcher-btn:hover {
+    background-color: #ff8000 !important;
+}
+
 /* Bottom left - Instituto text */
 .logo-bottom-right {
     position: absolute;
