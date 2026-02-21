@@ -52,7 +52,7 @@ function AboutUs() {
         });
         updateActive();
       },
-      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] }
+      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] },
     );
 
     Object.values(cardRefs.current).forEach((el) => {
@@ -85,7 +85,7 @@ function AboutUs() {
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-full"
           }`}
-          style={{ backgroundImage: "url('/images/hero.jpg')" }}
+          style={{ backgroundImage: "url('/images/hero3.jpg')" }}
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
@@ -143,7 +143,9 @@ function AboutUs() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Missão */}
             <div
-              ref={(el) => { cardRefs.current["missao"] = el; }}
+              ref={(el) => {
+                cardRefs.current["missao"] = el;
+              }}
               data-card-id="missao"
               className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "missao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
@@ -164,7 +166,9 @@ function AboutUs() {
 
             {/* Visão */}
             <div
-              ref={(el) => { cardRefs.current["visao"] = el; }}
+              ref={(el) => {
+                cardRefs.current["visao"] = el;
+              }}
               data-card-id="visao"
               className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "visao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
@@ -186,7 +190,9 @@ function AboutUs() {
 
             {/* Valores */}
             <div
-              ref={(el) => { cardRefs.current["valores"] = el; }}
+              ref={(el) => {
+                cardRefs.current["valores"] = el;
+              }}
               data-card-id="valores"
               className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "valores" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
@@ -220,7 +226,9 @@ function AboutUs() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* News Item 1 */}
             <div
-              ref={(el) => { cardRefs.current["news1"] = el; }}
+              ref={(el) => {
+                cardRefs.current["news1"] = el;
+              }}
               data-card-id="news1"
               className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news1" ? "bg-white" : ""}`}
             >
@@ -229,7 +237,9 @@ function AboutUs() {
                 alt="Notícia 1"
                 className="w-full aspect-[3/2] object-cover"
               />
-              <div className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news1" ? "pl-[20px]" : "pl-0"}`}>
+              <div
+                className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news1" ? "pl-[20px]" : "pl-0"}`}
+              >
                 <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   Rios Voadores
                 </h3>
@@ -249,7 +259,9 @@ function AboutUs() {
 
             {/* News Item 2 */}
             <div
-              ref={(el) => { cardRefs.current["news2"] = el; }}
+              ref={(el) => {
+                cardRefs.current["news2"] = el;
+              }}
               data-card-id="news2"
               className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news2" ? "bg-white" : ""}`}
             >
@@ -258,7 +270,9 @@ function AboutUs() {
                 alt="Notícia 2"
                 className="w-full aspect-[3/2] object-cover"
               />
-              <div className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news2" ? "pl-[20px]" : "pl-0"}`}>
+              <div
+                className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news2" ? "pl-[20px]" : "pl-0"}`}
+              >
                 <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   Inteligência Ambiental
                 </h3>
@@ -278,7 +292,9 @@ function AboutUs() {
 
             {/* News Item 3 */}
             <div
-              ref={(el) => { cardRefs.current["news3"] = el; }}
+              ref={(el) => {
+                cardRefs.current["news3"] = el;
+              }}
               data-card-id="news3"
               className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news3" ? "bg-white" : ""}`}
             >
@@ -287,7 +303,9 @@ function AboutUs() {
                 alt="Notícia 3"
                 className="w-full aspect-[3/2] object-cover"
               />
-              <div className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news3" ? "pl-[20px]" : "pl-0"}`}>
+              <div
+                className={`py-4 transition-all duration-300 md:group-hover:pl-[20px] ${activeCard === "news3" ? "pl-[20px]" : "pl-0"}`}
+              >
                 <h3 className="text-2xl font-bold mb-2 text-[#004d28]">
                   No Go Mining
                 </h3>
