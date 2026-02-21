@@ -8,7 +8,7 @@ function AboutUs() {
   const [heroAnimated, setHeroAnimated] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeCard, setActiveCard] = useState<string | null>(null);
-  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const cardRefs = useRef<Record<string, HTMLElement | null>>({});
   const ratioMap = useRef<Record<string, number>>({});
 
   useEffect(() => {
@@ -142,77 +142,74 @@ function AboutUs() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Missão */}
-            <div
+            <a
+              href="#"
               ref={(el) => {
                 cardRefs.current["missao"] = el;
               }}
               data-card-id="missao"
-              className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "missao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+              className={`block text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "missao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
               <Target className="w-12 h-12 mx-auto mb-4 text-white" />
-              <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">Missão</h2>
+              <h2 className="text-[1.8rem] font-medium mb-3 text-[#63c34a]">
+                Missão
+              </h2>
               <p className="text-white mb-4">
                 Avançar a ciência ambiental através de pesquisas inovadoras e
                 práticas sustentáveis que beneficiam comunidades e ecossistemas.
               </p>
-              <a
-                href="#"
-                className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium"
-              >
+              <span className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium">
                 Saiba mais
                 <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
+              </span>
+            </a>
 
             {/* Visão */}
-            <div
+            <a
+              href="#"
               ref={(el) => {
                 cardRefs.current["visao"] = el;
               }}
               data-card-id="visao"
-              className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "visao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+              className={`block text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "visao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
               <Eye className="w-12 h-12 mx-auto mb-4 text-white" />
-              <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">Visão</h2>
+              <h2 className="text-[1.8rem] font-medium mb-3 text-[#63c34a]">
+                Visão
+              </h2>
               <p className="text-white mb-4">
                 Um mundo onde a gestão ambiental, metodologia científica e
                 tecnologia criam um futuro sustentável para muitas gerações que
                 estão por vir.
               </p>
-              <a
-                href="#"
-                className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium"
-              >
+              <span className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium">
                 Saiba mais
                 <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
+              </span>
+            </a>
 
             {/* Valores */}
-            <div
+            <a
+              href="#"
               ref={(el) => {
                 cardRefs.current["valores"] = el;
               }}
               data-card-id="valores"
-              className={`text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "valores" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+              className={`block text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "valores" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
               <Leaf className="w-12 h-12 mx-auto mb-4 text-white" />
-              <h2 className="text-2xl font-bold mb-3 text-[#63c34a]">
+              <h2 className="text-[1.8rem] font-medium mb-3 text-[#63c34a]">
                 Valores
               </h2>
               <p className="text-white mb-4">
-                Integridade, colaboração e um profundo compromisso com a
-                responsabilidade ambiental guiam tudo o que fazemos no Instituto
-                Relva.
+                Integridade, colaboração e compromisso com a responsabilidade
+                ambiental guiam tudo o que fazemos no Instituto Relva.
               </p>
-              <a
-                href="#"
-                className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium"
-              >
+              <span className="text-[#63c34a] hover:text-[#7ed95f] transition-colors inline-flex items-center gap-1 font-medium">
                 Saiba mais
                 <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
+              </span>
+            </a>
           </div>
         </div>
       </section>
