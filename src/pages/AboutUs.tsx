@@ -148,9 +148,9 @@ function AboutUs() {
                 cardRefs.current["missao"] = el;
               }}
               data-card-id="missao"
-              className={`block text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "missao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+              className={`block text-left p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "missao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
-              <Target className="w-12 h-12 mx-auto mb-4 text-white" />
+              <Target className="w-12 h-12 mb-4 text-white" />
               <h2 className="text-[1.8rem] font-medium mb-3 text-[#63c34a]">
                 Missão
               </h2>
@@ -171,9 +171,9 @@ function AboutUs() {
                 cardRefs.current["visao"] = el;
               }}
               data-card-id="visao"
-              className={`block text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "visao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+              className={`block text-left p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "visao" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
-              <Eye className="w-12 h-12 mx-auto mb-4 text-white" />
+              <Eye className="w-12 h-12 mb-4 text-white" />
               <h2 className="text-[1.8rem] font-medium mb-3 text-[#63c34a]">
                 Visão
               </h2>
@@ -195,9 +195,9 @@ function AboutUs() {
                 cardRefs.current["valores"] = el;
               }}
               data-card-id="valores"
-              className={`block text-center p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "valores" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
+              className={`block text-left p-8 rounded-lg transition-colors md:hover:bg-[#1e1e40] ${activeCard === "valores" ? "bg-[#1e1e40]" : "bg-[#151530]"}`}
             >
-              <Leaf className="w-12 h-12 mx-auto mb-4 text-white" />
+              <Leaf className="w-12 h-12 mb-4 text-white" />
               <h2 className="text-[1.8rem] font-medium mb-3 text-[#63c34a]">
                 Valores
               </h2>
