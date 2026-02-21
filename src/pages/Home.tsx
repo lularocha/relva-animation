@@ -30,6 +30,7 @@ interface VariantParams {
   greenDownwardStretch?: number;
   greenBaseOffset?: number;
   minHeight?: number;
+  minLineAmplitude?: number;
   waveNumWaves?: number;
   waveSpeed?: number;
   waveSecondarySpeedRatio?: number;
@@ -75,8 +76,9 @@ const variantParams: Record<Variant, VariantParams> = {
   },
   taller: {
     speedMultiplier: 0.37,
-    minStretchMultiplier: 1 / 4,
-    maxStretchMultiplier: 1,
+    minStretchMultiplier: 1 / 3,
+    maxStretchMultiplier: 0.9,
+    minLineAmplitude: 3 / 4,
     colors: ["#63C34A", "#ffffff"],
     spikeChance: 0,
     spikeMaxStretch: 1,
@@ -258,7 +260,7 @@ function Home() {
             ? line.color !== "#ffffff"
               ? 0.8
               : 0.8
-            : line.maxStretch;
+            : Math.max(line.maxStretch, params.minLineAmplitude ?? 0);
         const minStretch = lineAmplitude * params.minStretchMultiplier;
         const maxStretch = lineAmplitude * effectiveMaxStretchMult;
         const actualStretch =
