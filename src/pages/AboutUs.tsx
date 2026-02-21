@@ -296,7 +296,7 @@ function AboutUs() {
               className={`group text-left overflow-hidden transition-colors cursor-pointer md:hover:bg-white ${activeCard === "news3" ? "bg-white" : ""}`}
             >
               <img
-                src="/images/news6.jpg"
+                src="/images/news5.jpg"
                 alt="Notícia 3"
                 className="w-full aspect-[3/2] object-cover"
               />
