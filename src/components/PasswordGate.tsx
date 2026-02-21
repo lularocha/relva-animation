@@ -10,9 +10,14 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
 
   return (
     <div
-      style={{ backgroundColor: "#1da348" }}
-      className="min-h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: "url('/images/hero3.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      className="min-h-screen flex items-center justify-center relative"
     >
+      <div className="absolute inset-0 bg-black/50" />
       <input
         type="password"
         value={input}
@@ -24,7 +29,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
           }
         }}
         placeholder="Password"
-        className="px-5 py-2.5 rounded text-lg outline-none"
+        className="relative z-10 px-5 py-2.5 rounded text-lg outline-none"
         autoFocus
       />
     </div>
