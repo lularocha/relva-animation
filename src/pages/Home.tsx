@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Paintbrush } from "lucide-react";
+import { ChartNoAxesColumn, Paintbrush } from "lucide-react";
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
 import relvaInstitutoText from "../assets/logos/relva-app-text.svg";
 
@@ -344,6 +344,10 @@ function Home() {
     setBgColorIndex((prev) => (prev + 1) % BACKGROUND_COLORS.length);
   };
 
+  const handleVariantCycle = () => {
+    setVariantIndex((prev) => (prev + 1) % variants.length);
+  };
+
   // Keep ref in sync with state for use in animation loop
   useEffect(() => {
     variantRef.current = variantIndex;
@@ -363,20 +367,42 @@ function Home() {
       />
 
       <div
-        className="logo-bottom-left color-switcher-btn"
-        onClick={handleBackgroundToggle}
-        style={{
-          cursor: "pointer",
-          width: 40,
-          height: 40,
-          borderRadius: "50%",
-          backgroundColor: "rgba(255, 255, 255, 0.1)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        className="logo-bottom-left"
+        style={{ display: "flex", flexDirection: "row", gap: 10 }}
       >
-        <Paintbrush size={20} color="#ffffff" />
+        <div
+          className="color-switcher-btn"
+          onClick={handleVariantCycle}
+          style={{
+            cursor: "pointer",
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ChartNoAxesColumn size={20} color="#ffffff" />
+        </div>
+
+        <div
+          className="color-switcher-btn"
+          onClick={handleBackgroundToggle}
+          style={{
+            cursor: "pointer",
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Paintbrush size={20} color="#ffffff" />
+        </div>
       </div>
 
       <img
