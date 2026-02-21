@@ -41,9 +41,8 @@ interface VariantParams {
 // ============================================
 const BACKGROUND_COLORS = [
   "#002d18", // Dark green (default)
-  "#401500", // Terra dark
-  // "#591111", // Dark burgundy
   "#151530", // Dark navy blue
+  "#401500", // Terra dark
   "#2c1142", // Dark purple
   "#400834", // Deep dark magenta
   "#1d252c", // Dark slate
@@ -52,8 +51,8 @@ const BACKGROUND_COLORS = [
 // Accent color for the non-white lines, paired to each background
 const ACCENT_COLORS: Record<string, string> = {
   "#002d18": "#63C34A", // dark green → green
-  "#401500": "#FF8000", // terra dark → orange
   "#151530": "#0088ff", // dark navy → blue
+  "#401500": "#FF8000", // terra dark → orange
   "#2c1142": "#9947e2", // dark purple → green
   "#400834": "#cc3d88", // deep magenta → green
   "#1d252c": "#008888", // dark slate → green
