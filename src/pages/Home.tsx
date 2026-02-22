@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ChartNoAxesColumn, Paintbrush } from "lucide-react";
+import { Paintbrush } from "lucide-react";
+import graphIcon from "../assets/logos/graph-icon.svg";
 import relvaFullLogo from "../assets/logos/relva-app-symbol-woodmark.svg";
 import relvaInstitutoText from "../assets/logos/relva-app-text.svg";
 
@@ -384,7 +385,7 @@ function Home() {
             justifyContent: "center",
           }}
         >
-          <ChartNoAxesColumn size={20} color="#ffffff" />
+          <img src={graphIcon} alt="graph" style={{ width: 16, height: 16 }} />
         </div>
 
         <div
