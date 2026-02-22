@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { HatGlasses } from "lucide-react";
 
 const PASSWORD = "riosvoadores";
 
@@ -18,7 +19,9 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
       className="min-h-screen flex items-center justify-center relative"
     >
       <div className="absolute inset-0 bg-black/50" />
-      <div className="relative z-10 flex -translate-y-[70px] sm:translate-y-0">
+      <div className="relative z-10 flex flex-col items-center -translate-y-[70px] sm:translate-y-0">
+        <HatGlasses size={48} className="text-white mb-4" />
+        <div className="flex">
         <input
           type="password"
           value={input}
@@ -46,6 +49,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
         >
           enter
         </button>
+        </div>
       </div>
     </div>
   );
