@@ -19,8 +19,8 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
       className="min-h-screen flex items-center justify-center relative"
     >
       <div className="absolute inset-0 bg-black/50" />
-      <div className="relative z-10 flex flex-col items-center -translate-y-[70px] sm:translate-y-0">
-        <HatGlasses size={32} className="text-white mb-4" />
+      <div className="relative z-10 flex flex-col items-center -translate-y-[50px]">
+        <HatGlasses size={32} className="text-white mb-8" />
         <div className="flex">
         <input
           type="password"
