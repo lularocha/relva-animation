@@ -317,6 +317,9 @@ function Home() {
     const oldAccent = accentColorRef.current;
     accentColorRef.current = newAccent;
 
+    // Sync body background to match the animation background color
+    document.body.style.backgroundColor = BACKGROUND_COLORS[bgColorIndex];
+
     // Patch line data so resize re-generates with correct color
     linesRef.current.forEach((line) => {
       if (line.color === oldAccent) line.color = newAccent;
