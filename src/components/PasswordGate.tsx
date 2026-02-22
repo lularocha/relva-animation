@@ -29,7 +29,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
               setAuthed(true);
             }
           }}
-          placeholder="Password"
+          placeholder="password"
           className="px-5 py-2.5 rounded-l text-lg outline-none"
           autoFocus
         />
@@ -40,7 +40,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
               setAuthed(true);
             }
           }}
-          className="px-4 py-2.5 bg-white text-black text-lg font-medium rounded-r hover:bg-gray-100 active:bg-gray-200"
+          className="px-4 py-2.5 bg-gray-200 text-black text-lg font-normal rounded-r hover:bg-[#4fa33c] hover:text-white active:bg-[#4fa33c] active:text-white"
         >
           enter
         </button>
