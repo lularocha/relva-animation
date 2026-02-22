@@ -78,9 +78,9 @@ const variantParams: Record<Variant, VariantParams> = {
   },
   taller: {
     speedMultiplier: 0.37,
-    minStretchMultiplier: (1 / 3) * 0.8 * 0.8,
-    maxStretchMultiplier: 0.8 * 0.8,
-    minLineAmplitude: (3 / 4) * 0.8 * 0.8,
+    minStretchMultiplier: 0.25,
+    maxStretchMultiplier: 0.70,
+    minLineAmplitude: 0.70,
     colors: ["#63C34A", "#ffffff"],
     spikeChance: 0,
     spikeMaxStretch: 1,
