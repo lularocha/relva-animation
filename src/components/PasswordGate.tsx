@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const PASSWORD = "relva2026";
+const PASSWORD = import.meta.env.VITE_APP_PASSWORD as string;
 
 export default function PasswordGate({ children }: { children: React.ReactNode }) {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("authed") === "1");
