@@ -15,6 +15,7 @@ interface GrassLine {
   color: string;
   isSpiking: boolean;
   spikeStartPhase: number;
+  angle: number; // random jitter angle in radians (used by "taller" variant)
 }
 
 const variants = ["shorter", "taller", "free"] as const;
@@ -77,9 +78,9 @@ const variantParams: Record<Variant, VariantParams> = {
   },
   taller: {
     speedMultiplier: 0.37,
-    minStretchMultiplier: 1 / 3,
-    maxStretchMultiplier: 1,
-    minLineAmplitude: 3 / 4,
+    minStretchMultiplier: (1 / 3) * 0.8 * 0.8,
+    maxStretchMultiplier: 0.8 * 0.8,
+    minLineAmplitude: (3 / 4) * 0.8 * 0.8,
     colors: ["#63C34A", "#ffffff"],
     spikeChance: 0,
     spikeMaxStretch: 1,
@@ -140,6 +141,7 @@ function Home() {
           color,
           isSpiking: false,
           spikeStartPhase: 0,
+          angle: (Math.random() * 2 - 1) * (15 * Math.PI / 180), // ±15 degrees
         });
       }
       return lines;
@@ -276,6 +278,15 @@ function Home() {
 
         lineEl.setAttribute("y1", String(bottomY));
         lineEl.setAttribute("y2", String(finalTopY));
+
+        // "taller" variant: tilt each line by its random angle (up to ±10°)
+        if (currentVariant === "taller") {
+          const lineHeight = bottomY - finalTopY;
+          const topX = line.x + lineHeight * Math.tan(line.angle);
+          lineEl.setAttribute("x2", String(topX));
+        } else {
+          lineEl.setAttribute("x2", String(line.x));
+        }
       });
 
       // Advance wave clock every frame (used by "free" wave variant)
