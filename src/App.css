@@ -91,6 +91,21 @@ body {
     z-index: 10;
 }
 
+/* Adjustments when iPhone is in landscape */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .logo-bottom-right {
+        transform: rotate(90deg);
+        transform-origin: bottom;
+        height: 210px;
+        margin-bottom: 20px;
+        margin-left: -15px;
+    }
+
+    .logo-top-center {
+        height: 120px;
+    }
+}
+
 .grass-svg {
     position: absolute;
     top: 0;
