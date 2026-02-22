@@ -387,8 +387,8 @@ function Home() {
           onClick={handleVariantCycle}
           style={{
             cursor: "pointer",
-            width: 40,
-            height: 40,
+            width: 46,
+            height: 46,
             borderRadius: "50%",
             backgroundColor: "rgba(255, 255, 255, 0.1)",
             display: "flex",
@@ -404,8 +404,8 @@ function Home() {
           onClick={handleBackgroundToggle}
           style={{
             cursor: "pointer",
-            width: 40,
-            height: 40,
+            width: 46,
+            height: 46,
             borderRadius: "50%",
             backgroundColor: "rgba(255, 255, 255, 0.1)",
             display: "flex",

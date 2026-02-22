@@ -74,7 +74,7 @@ body {
     position: absolute;
     bottom: calc(25px + env(safe-area-inset-bottom, 0px));
     right: 25px;
-    height: 36px;
+    height: 46px;
     z-index: 10;
 }
 
